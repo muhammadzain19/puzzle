@@ -22,7 +22,7 @@
                 <div id="lefthead">Puzzle Game</div>
                 <div class="leftsubhead">
                     <p id="countdown">Countdown Timer</p1>
-                    <div id="timer">00:30</div>
+                    <div id="timer">00:25</div>
                     <button id="startButton">Start</button>
                 </div>
                 <div class="board" id="board">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="reload">
-                    <button class="reloadsub" onclick="window. location. reload()">Reload</button>
+                    <button class="reloadsub" onclick="window. location. reload()">Restart</button>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
             numbers = shuffleArray(numbers);
             createBoxes();
             startButton.disabled = true;
-            secondsLeft = 30;
+            secondsLeft = 25;
             updateTimer();
             startButton.textContent = "Started";
             timerInterval = setInterval(updateTimer, 1000);
@@ -112,7 +112,7 @@
 
                 if (numbers.every((num, index) => num === index + 1)) {
                     clearInterval(timerInterval);
-                    message.textContent = `You Win! Time taken: ${30 - secondsLeft} seconds`;
+                    message.textContent = `You Win! Time taken: ${24 - secondsLeft} seconds`;
                     startButton.disabled = false;
                 }
             }
