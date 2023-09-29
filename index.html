@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        /* Add CSS styles for the draggable boxes */
+
+        /* Add a class for highlighting the drop target */
+    </style>
+    <title>Puzzle</title>
+</head>
+
+<body>
+    <div style="background-image: url('images/back1.webp'); width: 100%; height: 651px;">
+        <div class="container">
+            <div id="left">
+                <div id="lefthead">Puzzle Game</div>
+                <div class="leftsubhead">
+                    <p id="countdown">Countdown Timer</p1>
+                    <div id="timer">00:30</div>
+                    <button id="startButton">Start</button>
+                </div>
+                <div class="board" id="board">
+                    <!-- Add draggable attribute to each box -->
+
+                </div>
+            </div>
+            <div>
+                <div id="parentright">
+                    <div id="right">
+                        <div id="righthead">Score Board</div>
+                        <div id="message"></div>
+
+                    </div>
+                </div>
+                <div class="reload">
+                    <button class="reloadsub" onclick="window. location. reload()">Reload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const board = document.getElementById("board");
+        const startButton = document.getElementById("startButton");
+        const timer = document.getElementById("timer");
+        const message = document.getElementById("message");
+
+        let numbers;
+        let timerInterval;
+        let secondsLeft;
+        let gameStarted = false; // Flag to track whether the game has started
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function createBoxes() {
+            board.innerHTML = "";
+            numbers.forEach(number => {
+                const box = document.createElement("div");
+                box.className = "box";
+                box.textContent = number;
+                box.draggable = gameStarted; // Only allow dragging when the game has started
+                board.appendChild(box);
+                box.addEventListener("dragstart", onDragStart);
+                box.addEventListener("dragover", onDragOver);
+                box.addEventListener("drop", onDrop);
+            });
+        }
+
+        function startGame() {
+            if (timerInterval) clearInterval(timerInterval);
+            numbers = shuffleArray(numbers);
+            createBoxes();
+            startButton.disabled = true;
+            secondsLeft = 30;
+            updateTimer();
+            startButton.textContent = "Started";
+            timerInterval = setInterval(updateTimer, 1000);
+            gameStarted = true; // Set the game as started
+        }
+
+        function onDragStart(e) {
+            e.dataTransfer.setData("text/plain", e.target.textContent);
+        }
+
+        function onDragOver(e) {
+            e.preventDefault();
+        }
+
+        function onDrop(e) {
+            e.preventDefault();
+            if (!gameStarted) return; // Do nothing if the game has not started
+
+            const draggedNumber = e.dataTransfer.getData("text/plain");
+            const targetNumber = e.target.textContent;
+
+            if (targetNumber !== "") {
+                const draggedIndex = numbers.indexOf(parseInt(draggedNumber));
+                const targetIndex = numbers.indexOf(parseInt(targetNumber));
+                [numbers[draggedIndex], numbers[targetIndex]] = [numbers[targetIndex], numbers[draggedIndex]];
+                createBoxes();
+
+                if (numbers.every((num, index) => num === index + 1)) {
+                    clearInterval(timerInterval);
+                    message.textContent = `You Win! Time taken: ${30 - secondsLeft} seconds`;
+                    startButton.disabled = false;
+                }
+            }
+        }
+
+        function updateTimer() {
+            timer.textContent = `Time: ${secondsLeft}`;
+            if (secondsLeft === 0) {
+                clearInterval(timerInterval);
+                message.textContent = "You Lose!";
+                startButton.disabled = false;
+                startButton.textContent = "Start";
+                gameStarted = false; // Reset the game as not started
+            } else {
+                secondsLeft--;
+            }
+        }
+
+        startButton.addEventListener("click", startGame);
+
+        numbers = [...Array(12).keys()].map(x => x + 1);
+        createBoxes();
+    </script>
+</body>
+
+</html>

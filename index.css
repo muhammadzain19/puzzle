@@ -1,0 +1,167 @@
+body {
+    margin: auto;
+    width: 100%;
+}
+
+.container{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#left {
+    width: 300px;
+    height: 600px;
+    border: 4px orange solid;
+    border-radius: 45px;
+}
+
+#lefthead {
+    color: white;
+    text-align: center;
+    padding-top: 25px;
+    font-size: 38px;
+    font-family: 'Black Ops One', cursive;
+}
+.leftsubhead {
+    text-align: center;
+    color: white;
+}
+
+#timer {
+    font-size: 32px;
+    font-family: 'Black Ops One', cursive;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+#startButton {
+    width: 120px;
+    background-color: white;
+    border: 0;
+    border-radius: 56px;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    outline: 0;
+    padding: 10px 21px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  #startButton::before{
+    background-color: initial;
+     border-radius: 125px;
+    content: "";
+    height: 50%;
+    left: 4%;
+    opacity: .5;
+    position: absolute;
+    top: 0;
+    transition: all .3s;
+    width: 92%;
+  }
+#startButton:hover{
+    box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+    transform: scale(1.1);
+    background-color: orange;
+    color: white;
+}
+#countdown {
+    font-size: 22px;
+    font-family: 'Black Ops One', cursive;
+    margin: 0%;
+    padding-top: 10px;
+}
+.board{
+    color: white;
+    display: grid;
+    grid-template-columns:78px 78px 78px ;
+    padding-left: 15px;
+    padding-right:15px;
+    gap: 18px;
+    padding-top: 25px;
+}
+.box{
+    border: 2px solid white;
+    text-align: center;
+    padding-top: 22px;
+    height: 44px;
+    cursor: grab;
+    border-radius: 12px;
+    border: 2px solid orange;
+    position: relative;
+}
+.box:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 12px orange;
+    background-color: #2b2b2a;
+}
+
+.highlight {
+    border: 2px dashed #000;
+}
+
+#right{
+border: 10px double black;
+background-color: orange;
+width: 210px;
+height: 240px;
+border-radius: 34px;
+}
+#parentright{
+    padding-top: 130px;
+}
+#righthead{
+    text-align: center;
+    font-size: 28px;
+    padding-top: 35px;
+    font-family: 'Black Ops One', cursive;
+}
+.reload{
+display: flex;
+justify-content: center;
+padding-top: 10px;
+}
+.reloadsub{
+    width: 100px;
+    background-color: orange;
+    border: 0;
+    border-radius: 56px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    outline: 0;
+    padding: 10px 21px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+.reloadsub:hover{
+    box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+    transform: scale(1.1);
+    background-color: white;
+    color: #000;
+}
+#message{
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-family: 'Black Ops One', cursive;
+    padding-top: 12px;
+}
